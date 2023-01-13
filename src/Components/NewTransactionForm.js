@@ -22,6 +22,8 @@ function NewTransactionForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    transaction.amount = Number(transaction.amount);
+
     axios
       .post(`${API}/transactions`, transaction)
       .then(() => navigate("/transactions"))
@@ -35,7 +37,7 @@ function NewTransactionForm() {
         <input
           id="date"
           value={transaction.date}
-          type="text"
+          type="date"
           onChange={handleTextChange}
           placeholder="mm-dd-yyyy"
           required
@@ -52,7 +54,7 @@ function NewTransactionForm() {
         <label htmlFor="amount">Amount:</label>
         <input
           id="amount"
-          value={Number(transaction.amount)}
+          value={transaction.amount}
           type="number"
           onChange={handleTextChange}
           placeholder=""
